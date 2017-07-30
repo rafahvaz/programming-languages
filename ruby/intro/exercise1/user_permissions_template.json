@@ -1,0 +1,5 @@
+{
+    "accounts": "true",
+    "policies": "write",
+    "users": "write"
+}

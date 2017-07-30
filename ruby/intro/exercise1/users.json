@@ -1,0 +1,9 @@
+{
+    "email": "john@example.com",
+    "name": "John",
+    "permissions": {
+        "accounts": "true",
+        "policies": "write",
+        "users": "write"
+    }
+}
