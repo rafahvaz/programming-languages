@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import express from 'express'
 import mongoose from 'mongoose';
 import routes from './api/routes/todoListRoutes'
-
 const app = express();
 const port = process.env.PORT || 3000;
 
