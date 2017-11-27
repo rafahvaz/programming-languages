@@ -5,7 +5,7 @@ public class Resident extends Person{
     private final Integer numeroApt;
     private Boolean contaPaga;
 
-    public Resident(Long id, String name, String cpf, Integer numeroApt) {
+    public Resident(int id, String name, String cpf, Integer numeroApt) {
         super(id, name, cpf);
         this.numeroApt = numeroApt;
     }

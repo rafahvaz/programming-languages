@@ -14,9 +14,9 @@ public class CondoDoormanController {
     @RequestMapping("/doorman")
     public CondoDoorman condoDoorman(){
         return new CondoDoorman(
-                counter.incrementAndGet(),
-               "Porteiro x",
-               "1234567891011",
+               1,
+               "Pedro Cordeiro",
+               "27622870900",
                1000.00);
     }
 }

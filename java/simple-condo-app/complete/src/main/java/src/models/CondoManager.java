@@ -5,7 +5,7 @@ public class CondoManager extends Person{
     private String username = "admin";
     private String password = "123456";
 
-    public CondoManager(Long id, String name, String cpf) {
+    public CondoManager(int id, String name, String cpf) {
         super(id, name, cpf);
     }
 

@@ -10,9 +10,9 @@ public class CondoManagerController extends ControllerTemplate {
     @RequestMapping("/manager")
     public CondoManager condoManager() {
         return new CondoManager(
-                this.counter.incrementAndGet(),
-               "Síndico X",
-               "00000000000");
+                1,
+               "Mario Toledo",
+               "22424450498");
     }
 
 }

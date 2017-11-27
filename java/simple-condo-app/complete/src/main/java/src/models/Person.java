@@ -1,11 +1,11 @@
 package src.models;
 
 public class Person {
-    private final Long id;
+    private final int id;
     private final String name;
     private final String cpf;
 
-    public Person(Long id, String name, String cpf) {
+    public Person(int id, String name, String cpf) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -19,7 +19,7 @@ public class Person {
         return cpf;
     }
 
-    public Long getId() {
+    public int getId() {
         return this.id;
     }
 }
