@@ -1,14 +1,16 @@
 package src.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import src.helper.ResidentsHelper;
 import src.models.Resident;
 
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 public class ResidentController extends ControllerTemplate {
@@ -35,5 +37,41 @@ public class ResidentController extends ControllerTemplate {
         return choosenResident != null ? choosenResident : "Sem resultados";
 
     };
+
+    @RequestMapping(value = "/resident", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Void> registerResident(@RequestBody LinkedHashMap request){
+
+        ArrayList<Object> list = new ArrayList<Object>();
+
+        for(Object value : request.values()) {
+//            String value = (String)val;
+            list.add(value);
+        }
+
+        Resident newResident = new Resident(
+                (Integer)list.get(0),
+                (String)list.get(1),
+                (String)list.get(2),
+                (Integer)list.get(3)
+        );
+
+        System.out.println(newResident.getName());
+
+        this.residentsHelper.addResident(newResident);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/").buildAndExpand().toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @RequestMapping(value = "/delete-resident/{residentId}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<Void> deleteResident(@PathVariable String residentId){
+
+        this.residentsHelper.deleteResident(Integer.parseInt(residentId));
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/").buildAndExpand().toUri();
+
+        return ResponseEntity.created(location).build();
+    }
 
 }

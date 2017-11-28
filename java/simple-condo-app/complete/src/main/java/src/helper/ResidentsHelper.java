@@ -71,4 +71,19 @@ public class ResidentsHelper {
         return this.residents;
     }
 
+    public void addResident(Resident resident) {
+        this.residents.add(resident);
+    }
+
+    public void deleteResident(Integer residentId) {
+        Integer elementIndex;
+        ArrayList<Resident> newList = new ArrayList<Resident>();
+        for(Resident r : this.residents) {
+           if(r.getId() != residentId) {
+               newList.add(r);
+           }
+        }
+        this.residents = newList;
+    }
+
 }
