@@ -3,7 +3,7 @@ package src.models;
 public class Resident extends Person{
 
     private final Integer numeroApt;
-    private Boolean contaPaga;
+    private Boolean contaPaga = false;
 
     public Resident(int id, String name, String cpf, Integer numeroApt) {
         super(id, name, cpf);

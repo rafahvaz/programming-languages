@@ -2,6 +2,7 @@ package src.helper;
 
 import src.models.Resident;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -84,7 +85,7 @@ public class ResidentsHelper {
                Math.toIntExact(this.counter.incrementAndGet()),
                 (String)list.get(0),
                 (String)list.get(1),
-                (Integer)list.get(2));
+                Integer.parseInt((String)list.get(2)));
 
         this.residents.add(newResident);
     }
@@ -98,6 +99,14 @@ public class ResidentsHelper {
            }
         }
         this.residents = newList;
+    }
+
+    public void checkBill(Integer residentId) {
+        for(Resident r : this.residents) {
+            if(r.getId() == residentId) {
+                r.setContaPaga(!r.getContaPaga());
+            }
+        }
     }
 
 }

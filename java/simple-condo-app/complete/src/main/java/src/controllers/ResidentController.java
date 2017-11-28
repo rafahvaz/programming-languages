@@ -6,18 +6,20 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import src.helper.ResidentsHelper;
 import src.models.Resident;
 
+import javax.xml.ws.Response;
 import java.lang.reflect.Array;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class ResidentController extends ControllerTemplate {
 
     private ResidentsHelper residentsHelper = ResidentsHelper.getInstance();
 
-    @CrossOrigin(origins = "localhost:8000")
+    @CrossOrigin(origins = "localhost:4200")
     @RequestMapping("/residents")
     public ArrayList<Resident> resident() {
         return residentsHelper.getResidentsList();
@@ -52,8 +54,17 @@ public class ResidentController extends ControllerTemplate {
 
         this.residentsHelper.deleteResident(Integer.parseInt(residentId));
 
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/").buildAndExpand().toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
+    @RequestMapping(value = "/check-bill/{residentId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Void> checkBill(@PathVariable String residentId) {
+
+        this.residentsHelper.checkBill(Integer.parseInt(residentId));
+
+         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/").buildAndExpand().toUri();
 
         return ResponseEntity.created(location).build();
     }
