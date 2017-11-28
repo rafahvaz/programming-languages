@@ -3,6 +3,7 @@ package src.helper;
 import src.models.Resident;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class ResidentsHelper {
@@ -71,8 +72,21 @@ public class ResidentsHelper {
         return this.residents;
     }
 
-    public void addResident(Resident resident) {
-        this.residents.add(resident);
+    public void addResident(LinkedHashMap data) {
+
+        ArrayList<Object> list = new ArrayList<Object>();
+
+        for(Object value : data.values()) {
+            list.add(value);
+        }
+
+        Resident newResident = new Resident(
+               Math.toIntExact(this.counter.incrementAndGet()),
+                (String)list.get(0),
+                (String)list.get(1),
+                (Integer)list.get(2));
+
+        this.residents.add(newResident);
     }
 
     public void deleteResident(Integer residentId) {

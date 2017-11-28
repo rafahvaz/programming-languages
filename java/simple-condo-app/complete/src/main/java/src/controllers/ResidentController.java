@@ -41,23 +41,7 @@ public class ResidentController extends ControllerTemplate {
     @RequestMapping(value = "/resident", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Void> registerResident(@RequestBody LinkedHashMap request){
 
-        ArrayList<Object> list = new ArrayList<Object>();
-
-        for(Object value : request.values()) {
-//            String value = (String)val;
-            list.add(value);
-        }
-
-        Resident newResident = new Resident(
-                (Integer)list.get(0),
-                (String)list.get(1),
-                (String)list.get(2),
-                (Integer)list.get(3)
-        );
-
-        System.out.println(newResident.getName());
-
-        this.residentsHelper.addResident(newResident);
+        this.residentsHelper.addResident(request);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/").buildAndExpand().toUri();
         return ResponseEntity.created(location).build();
